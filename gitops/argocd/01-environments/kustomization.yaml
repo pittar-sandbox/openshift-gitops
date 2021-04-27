@@ -5,7 +5,7 @@ namespace: openshift-gitops
 
 resources:
   - environments-project.yaml
-  - environments-argocd-cluster-application.yaml
-  - environments-argocd-developer-application.yaml
-  - environments-cicd-application.yaml
-  - environments-petclinic-application.yaml
+  - argocd-cluster-application.yaml
+  - argocd-developers-application.yaml
+  - cicd-tools-application.yaml
+  - petclinic-application.yaml
