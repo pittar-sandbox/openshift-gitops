@@ -35,10 +35,6 @@ This demo is deployed in stages:
 * Use Developers Argo CD to create pipelines and application configuration.
 * Kick off a pipeline run!
 
-## Getting Started
 
-Select the version of OpenShift you are using to see how to install the OpenShift GitOps Operator:
-
-* [OpenShift 4.6 (including Azure Red Hat OpenShift)](docs/01-install-gitops-operator-46.md)
-* [OpenShift 4.7](docs/01-install-gitops-operator-47.md)
+**Next:** [Install the OpenShift GitOps Operator](docs/01-install-gitops-operator.md)
 

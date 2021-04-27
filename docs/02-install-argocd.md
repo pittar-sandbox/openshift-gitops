@@ -13,13 +13,13 @@ However, we first need to create the projects/namespaces that we will use in thi
 To put all this in place, we will create a new *AppProject* and *Application* in the `openshift-gitops` Argo CD instance to manage these environments.  You can do this by executing the following command:
 
 ```
-oc apply -k https://github.com/pittar-demos/gitops-and-tekton-with-openshift/gitops/argocd/01-environments-ga
+oc apply -k https://github.com/pittar-sandbox/openshift-gitops/gitops/argocd/01-environments
 ```
 
 Once the environments *Application* is synchronized and healthy, you can execute the next command to create an *Application* to deploy and manage the Developer instance of Argo CD:
 
 ```
-oc apply -k https://github.com/pittar-demos/gitops-and-tekton-with-openshift/gitops/argocd/02-argocd-for-developers
+oc apply -k https://github.com/pittar-sandbox/openshift-gitops/gitops/argocd/02-argocd-for-developers
 ```
 
 If you have the UI for the cluster instance of Argo CD open, you should see "argocd-devs" and "environments" *Applications*.  Once they are both healthy and green, the new Argo CD instance in the `argocd` namespace will be ready!

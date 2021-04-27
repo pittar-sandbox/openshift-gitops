@@ -15,7 +15,7 @@ Choose one of the following options.
 
 ![OperatorHub Search](images/operator-hub-search.png)
 
-5. Click the "Install" button on the blade that appears to the right. With OpenShift 4.6, you will be using version **1.0.0** of the OpenShift GitOps operator.
+5. Click the "Install" button on the blade that appears to the right.
 
 ![Operator Install](images/openshift-gitops-install1.png)
 
@@ -32,7 +32,7 @@ Alternatively, you can install the OpenShift GitOps operator from the command li
 2. Run the following command:
 
 ```
-oc apply -k https://github.com/redhat-canada-gitops/catalog/openshift-gitops-operator/overlays/preview-4.6
+oc apply -k https://github.com/redhat-canada-gitops/catalog/openshift-gitops-operator/overlays/stable-4.7
 ```
 
 ## What Gets Installed?
@@ -44,6 +44,14 @@ When the Red Hat OpenShift GitOps operator is installed, it will automatically d
 
 The "cluster" instance of Argo CD is meant for cluster administration, not for "developers" to use.  However, it can be used to create new namespaces and grant permissions to other Argo CD instances!
 
-If you want to see what this default instance of Argo CD looks like, you can find it in the `openshift-gitops` project.  You can access the UI by clicking on the route.  The default username is `admin` and the password can be found in the `argocd-cluster-cluster` secret.
+If you want to see what this default instance of Argo CD looks like, you can find it in the `openshift-gitops` project.  There will also be a link to this Argo CD instance automatically added to the links menu of your OpenShift UI.
 
-**Next:** [Install Argo CD for Developers](02-install-argocd-46.md)
+![Argo CD Link](images/argocd-link.png)
+
+The default username is `admin` and the password can be found in the `argocd-cluster-cluster` secret in the `openshift-gitops` namespace. You can also get the password using the `oc` cli:
+
+```
+oc get secret openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+```
+
+**Next:** [Install Argo CD for Developers](02-install-argocd.md)
