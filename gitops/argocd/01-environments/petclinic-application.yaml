@@ -1,7 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: petclinic-environments
+  name: env-petclinic-environments
 spec:
   destination:
     namespace: openshift-gitops

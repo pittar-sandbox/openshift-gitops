@@ -1,7 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: cicd-tools
+  name: env-cicd-tools
 spec:
   destination:
     namespace: openshift-gitops
