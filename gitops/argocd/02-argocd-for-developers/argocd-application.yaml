@@ -9,7 +9,7 @@ spec:
   project: argocd-developers
   source:
     path: gitops/overlays/02-argocd-for-developers
-    repoURL: https://github.com/pittar-demos/gitops-and-tekton-with-openshift.git
+    repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
     automated:

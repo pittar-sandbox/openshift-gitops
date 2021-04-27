@@ -9,7 +9,7 @@ spec:
   project: cicd-tools
   source:
     path: gitops/overlays/03-cicd-tools
-    repoURL: https://github.com/pittar-demos/gitops-and-tekton-with-openshift.git
+    repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
     automated:
