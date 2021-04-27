@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: build-and-rollout
+  name: petclinic-build-and-rollout
 spec:
   workspaces:
     - name: shared-workspace

@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-options: Prune=false
-  generateName: build-and-rollout-run-
+  generateName: petclinic-build-and-rollout-run-
 spec:
   pipelineRef:
     name: build-and-rollout

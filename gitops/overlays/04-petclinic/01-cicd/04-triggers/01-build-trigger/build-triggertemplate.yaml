@@ -19,14 +19,14 @@ spec:
         annotations:
           argocd.argoproj.io/compare-options: IgnoreExtraneous
           argocd.argoproj.io/sync-options: Prune=false
-        name: $(tt.params.git-repo-name)-build-and-rollout-$(uid)
+        generateName: petclinic-build-and-rollout-
       spec:
         serviceAccountName: pipeline
         pipelineRef:
-          name: $(tt.params.git-repo-name)-build-and-rollout
+          name: petclinic-build-and-rollout
         params:
           - name: app-name
-            value: $(tt.params.git-repo-name)
+            value: petclinic
           - name: git-url
             value: $(tt.params.git-repo-url)
           - name: git-revision
@@ -34,7 +34,7 @@ spec:
         workspaces:
           - name: shared-workspace
             persistentVolumeClaim:
-              claimName: $(tt.params.git-repo-name)-workspace
+              claimName: workspace
           - name: maven-settings-cm
             configMap:
               name: maven-settings-cm
