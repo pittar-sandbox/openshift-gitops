@@ -6,8 +6,9 @@ namespace: petclinic-cicd
 bases:
   - 01-rbac
   - 02-builds
-  - 03-tekton
-  - 04-config
+  - 03-pipelines
+  - 04-triggers
+  - 05-config
 
 patchesJson6902:
   - target:
