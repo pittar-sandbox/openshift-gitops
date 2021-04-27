@@ -1,14 +1,14 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: environments
+  name: argocd-developers
 spec:
   destination:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: environments
   source:
-    path: gitops/overlays/01-environments/00-preview
+    path: gitops/overlays/01-environments/02-argocd-developers
     repoURL: https://github.com/pittar-demos/gitops-and-tekton-with-openshift.git
     targetRevision: main
   syncPolicy:
