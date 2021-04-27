@@ -9,7 +9,7 @@ spec:
   project: environments
   source:
     path: gitops/overlays/01-environments/04-petclinic
-    repoURL: https://github.com/pittar-demos/gitops-and-tekton-with-openshift.git
+    repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
     automated:
