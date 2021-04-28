@@ -12,3 +12,9 @@ rules:
       - limitranges
     verbs:
       - '*'
+  - apiGroups:
+    - bitnami.com
+    resources:
+    - sealedsecrets
+    verbs:
+    - '*'
