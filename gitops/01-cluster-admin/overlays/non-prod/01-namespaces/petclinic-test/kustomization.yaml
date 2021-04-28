@@ -10,5 +10,5 @@ bases:
 
 resources:
   - namespace.yaml
-  - pipeline-serviceaccount.yaml
+  - petclinic-serviceaccount.yaml
   - quay-creds-secret-sealedsecret.json
