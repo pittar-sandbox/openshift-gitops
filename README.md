@@ -1,5 +1,23 @@
 # GitOps and Serverless CI/CD with OpenShift
 
+# Steps.
+
+In non-prod cluster:
+
+1. Create non-prod envs.
+
+```
+oc apply -k gitops/01-cluster-admin/argocd/01-namespaces
+```
+
+2. Create the "apps" Argo CD instance.
+
+```
+
+```
+
+
+
 ## What's In This Demo?
 
 The puprose of this demo is to:
