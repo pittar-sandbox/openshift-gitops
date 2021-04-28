@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: sealed-secrets
 
 bases:
-  - ../../../../base/01-namespaces/02-sealed-secrets
+  - ../../../../base/01-namespaces/sealed-secrets
