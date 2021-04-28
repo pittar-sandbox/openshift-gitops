@@ -5,3 +5,4 @@ namespace: sealed-secrets
 
 resources:
   - namespace.yaml
+  - anyuid-role.yaml
