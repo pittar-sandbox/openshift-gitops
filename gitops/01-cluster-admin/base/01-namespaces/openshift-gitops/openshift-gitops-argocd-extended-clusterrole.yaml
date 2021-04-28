@@ -15,6 +15,12 @@ rules:
   - apiGroups:
     - bitnami.com
     resources:
-    - sealedsecrets
+      - sealedsecrets
     verbs:
-    - '*'
+      - '*'
+  - apiGroups:
+    - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - '*'
