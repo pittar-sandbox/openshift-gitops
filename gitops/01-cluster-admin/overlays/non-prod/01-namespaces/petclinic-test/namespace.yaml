@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: Pet Clinic - TEST
+    openshift.io/display-name: Pet Clinic - TEST
+  name: petclinic-test

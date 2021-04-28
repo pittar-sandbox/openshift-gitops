@@ -11,7 +11,7 @@ resources:
   - argocd-app.yaml
   # Tooling Namespaces
   - cicd-tools-app.yaml
-  - sealed-secrtes-app.yaml
+  - sealed-secrets-app.yaml
   # Pet Clinic Namespaces
   - petclinic-cicd-app.yaml
   - petclinic-dev-app.yaml

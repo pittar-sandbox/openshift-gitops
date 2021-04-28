@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: openshift-gitops
 
 bases:
-  - ../../../base/01-namespaces/01-openshift-gitops
+  - ../../../../base/01-namespaces/openshift-gitops
