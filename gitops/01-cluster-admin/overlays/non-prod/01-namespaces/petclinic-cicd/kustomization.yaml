@@ -8,4 +8,4 @@ bases:
 
 resources:
   - namespace.yaml
-  - quay-sealedsecret.json
+  - quay-creds-secret-sealedsecret.json

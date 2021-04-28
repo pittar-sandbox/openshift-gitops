@@ -10,3 +10,4 @@ bases:
 
 resources:
   - namespace.yaml
+  - quay-creds-secret-sealedsecret.json
