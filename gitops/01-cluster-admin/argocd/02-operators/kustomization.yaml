@@ -4,8 +4,5 @@ kind: Kustomization
 namespace: openshift-gitops
 
 resources:
-  - environments-project.yaml
-  - argocd-cluster-application.yaml
-  - argocd-developers-application.yaml
-  - cicd-tools-application.yaml
-  - petclinic-application.yaml
+  - operator-instances-project.yaml
+  - argocd-app.yaml

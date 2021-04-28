@@ -1,7 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: namespace-cicd-tools
+  name: instance-argocd
   labels:
     app: argocd
     group: operator-instances
