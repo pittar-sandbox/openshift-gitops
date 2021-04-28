@@ -13,7 +13,7 @@ oc apply -k gitops/01-cluster-admin/argocd/01-namespaces
 2. Create the "apps" Argo CD instance.
 
 ```
-
+oc apply -k gitops/01-cluster-admin/02-operators/argocd
 ```
 
 
