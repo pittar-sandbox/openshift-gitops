@@ -10,4 +10,5 @@ bases:
 
 resources:
   - namespace.yaml
+  - pipeline-serviceaccount.yaml
   - quay-creds-secret-sealedsecret.json
