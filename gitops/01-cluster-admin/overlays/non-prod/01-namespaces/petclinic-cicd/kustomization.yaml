@@ -3,5 +3,8 @@ kind: Kustomization
 
 namespace: petclinic-cicd
 
+bases:
+  - ../../../../base/03-rbac/openshift-gitops
+
 resources:
   - namespace.yaml

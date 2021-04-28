@@ -3,5 +3,8 @@ kind: Kustomization
 
 namespace: cicd-tools
 
+bases:
+  - ../../../../base/03-rbac/openshift-gitops
+
 resources:
   - namespace.yaml

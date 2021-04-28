@@ -3,5 +3,10 @@ kind: Kustomization
 
 namespace: petclinic-dev
 
+bases:
+  - ../../../../base/02-quotas-and-limits/02-medium
+  - ../../../../base/03-rbac/openshift-gitops
+  - ../../../../base/03-rbac/petclinic-cicd-pipelines
+
 resources:
   - namespace.yaml
