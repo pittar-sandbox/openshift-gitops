@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: namespace-openshift-gitops
   labels:
+    app: openshift-gitops
     group: namespace
 spec:
   destination:

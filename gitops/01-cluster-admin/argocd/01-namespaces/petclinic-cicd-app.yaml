@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: namespace-petclinic-cicd
   labels:
+    app: petclinic
     group: namespace
 spec:
   destination:

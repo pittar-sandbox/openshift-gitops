@@ -1,9 +1,9 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: namespace-argocd
+  name: namespace-petclinic-test
   labels:
-    app: argocd
+    app: petclinic
     group: namespace
 spec:
   destination:
@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: namespaces
   source:
-    path: gitops/01-cluster-admin/overlays/non-prod/01-namespaces/argocd
+    path: gitops/01-cluster-admin/overlays/non-prod/01-namespaces/petclinic-test
     repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:

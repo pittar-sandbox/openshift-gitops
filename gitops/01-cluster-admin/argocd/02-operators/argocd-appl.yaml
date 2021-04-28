@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: namespace-cicd-tools
   labels:
+    app: argocd
     group: operator-instances
 spec:
   destination:
