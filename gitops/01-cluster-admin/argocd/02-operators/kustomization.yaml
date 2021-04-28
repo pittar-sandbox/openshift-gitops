@@ -6,3 +6,4 @@ namespace: openshift-gitops
 resources:
   - operator-instances-project.yaml
   - argocd-app.yaml
+  - sealed-secrets-app.yaml
