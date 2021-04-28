@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: operator-instances
   source:
-    path: gitops/01-cluster-admin/overlays/non-prod/02-operator/argocd
+    path: gitops/01-cluster-admin/overlays/non-prod/02-operators/argocd
     repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
