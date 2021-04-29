@@ -177,7 +177,7 @@ spec:
         - name: new-image
           value: "quay.io/pittar/spring-petcinic"
         - name: new-tag
-          value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)""
+          value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)"
         - name: overlaypath
           value: "gitops/02-developers/overlays/prod/01-namespaces/petclinic-prod"
       runAfter:
