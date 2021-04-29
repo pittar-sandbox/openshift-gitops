@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - git-task.yaml
   - create-pr-task.yaml
+  - tag-and-push-image-task.yaml
 

@@ -66,13 +66,26 @@ spec:
           workspace: shared-workspace
     - name: tag-dev
       taskRef:
-        name: openshift-client
-        kind: ClusterTask
+        name: tag-and-push-image
+        kind: Task
       runAfter:
         - s2i-build
       params:
-        - name: ARGS
-          value: ["tag", "$(params.app-name):latest", "$(params.app-name):dev"]
+        - name: src-image
+          value: "quay.io/pittar/petclinic:gitops-tekton"
+        - name: dest-image
+          value: "quay.io/pittar/petclinic"
+        - name: dest-tags
+          value: "gitops-tekton-dev"
+    # - name: tag-dev
+    #   taskRef:
+    #     name: openshift-client
+    #     kind: ClusterTask
+    #   runAfter:
+    #     - s2i-build
+    #   params:
+    #     - name: ARGS
+    #       value: ["tag", "$(params.app-name):latest", "$(params.app-name):dev"]
     - name: rollout-dev
       taskRef:
         name: rollout-restart
@@ -84,23 +97,36 @@ spec:
           value: "$(params.app-name)"
         - name: NAMESPACE
           value: "petclinic-dev"
-    - name: tag-prod
+    # - name: tag-prod
+    #   taskRef:
+    #     name: openshift-client
+    #     kind: ClusterTask
+    #   runAfter:
+    #     - rollout-dev
+    #   params:
+    #     - name: ARGS
+    #       value: ["tag", "$(params.app-name):dev", "$(params.app-name):prod"]
+    - name: tag-test
       taskRef:
-        name: openshift-client
-        kind: ClusterTask
+        name: tag-and-push-image
+        kind: Task
       runAfter:
         - rollout-dev
       params:
-        - name: ARGS
-          value: ["tag", "$(params.app-name):dev", "$(params.app-name):prod"]
-    - name: rollout-prod
+        - name: src-image
+          value: "quay.io/pittar/petclinic:gitops-tekton-dev"
+        - name: dest-image
+          value: "quay.io/pittar/petclinic"
+        - name: dest-tags
+          value: "gitops-tekton-test"
+    - name: rollout-test
       taskRef:
         name: rollout-restart
         kind: Task
       runAfter:
-        - tag-prod
+        - tag-test
       params:
         - name: APP_NAME
           value: "$(params.app-name)"
         - name: NAMESPACE
-          value: "petclinic-prod"
+          value: "petclinic-test"
