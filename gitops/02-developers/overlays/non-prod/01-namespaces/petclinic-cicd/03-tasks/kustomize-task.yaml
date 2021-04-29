@@ -6,16 +6,16 @@ metadata:
   params:
     - name: old-image
       type: string
-      description: The placeholder image in the deployment to be replaced.
+      description: "The placeholder image in the deployment to be replaced."
     - name: new-image
       type: string
-      description: The image to update the deployment with.
+      description: "The image to update the deployment with."
     - name: new-tag
       type: string
-      description: The image to tag update the deployment with.
+      description: "The image to tag update the deployment with."
     - name: overlaypath
       type: string
-      description: Path to the overlay directory.
+      description: "Path to the overlay directory."
   steps:
     - name: kustomzie
       workingDir: $(workspaces.source.path)
