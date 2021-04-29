@@ -16,6 +16,11 @@ oc apply -k gitops/01-cluster-admin/argocd/01-namespaces
 oc apply -k gitops/01-cluster-admin/02-operators/argocd
 ```
 
+1. Create prod envs.
+
+```
+oc apply -k gitops/01-cluster-admin/argocd/01-namespaces
+```
 
 
 ## What's In This Demo?
