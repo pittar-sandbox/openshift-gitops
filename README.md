@@ -22,6 +22,11 @@ oc apply -k gitops/01-cluster-admin/argocd/non-prod/02-operators
 oc apply -k gitops/01-cluster-admin/argocd/prod/01-namespaces
 ```
 
+2. Create the "apps" Argo CD instance.
+
+```
+oc apply -k gitops/01-cluster-admin/argocd/prod/02-operators
+```
 
 ## What's In This Demo?
 
