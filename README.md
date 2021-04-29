@@ -16,53 +16,41 @@ oc apply -k gitops/01-cluster-admin/argocd/non-prod/01-namespaces
 oc apply -k gitops/01-cluster-admin/argocd/non-prod/02-operators
 ```
 
-1. Create prod envs.
+3. Create the shared CI/CD tooling:
+
+```
+oc apply -k gitops/02-developers/argocd/non-prod/01-cicd-tools
+```
+
+4. Create the Pet Clinic developer environments.
+
+```
+oc apply -k gitops/02-developers/argocd/non-prod/02-petclinic
+```
+
+5. Kick off a build.
+
+```
+oc create -f gitops/pipeline-run/build-and-rollout-pipeline-run.yaml -n petclinic-cicd
+```
+
+In prod cluster:
+
+6. Create prod envs.
 
 ```
 oc apply -k gitops/01-cluster-admin/argocd/prod/01-namespaces
 ```
 
-2. Create the "apps" Argo CD instance.
+7. Create the "apps" Argo CD instance.
 
 ```
 oc apply -k gitops/01-cluster-admin/argocd/prod/02-operators
 ```
 
-## What's In This Demo?
+8. Create the Pet Clinic prod environment.
 
-The puprose of this demo is to:
-
-* Deploy shared CI/CD infrastructure in an OpenShift cluster, such as:
-    * Sonatype Nexus - Maven artifact repository.
-    * SonarQube - Static code analysis and CVE reporting.
-    * Argo CD - GitOps lifecycle management, provided by OpenShift GitOps.
-    * Tekton - Serverless CI/CD, provided by OpenShift Pipelines.
-* Use GitOps repositories to:
-    * Create serverless pipelines.
-    * Provision and configure application environments (dev/prod)
-* Demonstrate the ability to use notifications from git repository managers such as Github, GitLab, Bitbucket to trigger new builds. Coming soon!
-* Manually start a build with a "pipeline run" custom resource.
-
-## What You Will Need
-
-Cluster Admin access to an OpenShift 4.6+ cluster. This has demo has been tested with:
-
-* Red Hat OpenShift Container Platform 4.7
-* Red Hat OpenShift Container Platform 4.6
-* Azure Red Hat OpenShift (OpenShift 4.6)
-
-## What You Will Do
-
-This demo is deployed in stages:
-* Install OpenShift GitOps operator.
-* Use the default Argo CD instance in the `openshift-gitops` namespace to:
-    * Create the projects/namespaces required for the demo.
-    * Configure RBAC for pipelines and Argo CD.
-    * Deploy an Argo CD instance for Developers to use.
-* Use Developers Argo CD to deploy common tooling (Nexus and SonarQube)
-* Use Developers Argo CD to create pipelines and application configuration.
-* Kick off a pipeline run!
-
-
-**Next:** [Install the OpenShift GitOps Operator](docs/01-install-gitops-operator.md)
+```
+oc apply -k gitops/02-developers/argocd/prod/02-petclinic
+```
 
