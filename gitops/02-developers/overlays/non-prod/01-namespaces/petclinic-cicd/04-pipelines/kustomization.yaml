@@ -10,3 +10,4 @@ resources:
   - 01-workspace-pvc.yaml
   - 01-gitops-repo-pvc.yaml
   - 02-build-and-rollout-pipeline.yaml
+  
