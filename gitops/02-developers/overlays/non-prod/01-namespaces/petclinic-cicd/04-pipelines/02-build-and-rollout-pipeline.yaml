@@ -5,6 +5,7 @@ metadata:
 spec:
   workspaces:
     - name: shared-workspace
+    - name: gitops-source
     - name: maven-settings-cm
   params:
     - name: app-name
@@ -17,6 +18,10 @@ spec:
       type: string
       description: revision to be used from repo of the code for deployment
       default: "master"
+    - name: "gitops-url"
+      value: "https://github.com/pittar-sandbox/openshift-gitops.git"
+    - name: "gitops-revision"
+      value: "main"
   tasks:
     - name: clone-repository
       taskRef:
@@ -100,15 +105,6 @@ spec:
           value: "quay.io/pittar/petclinic"
         - name: dest-tags
           value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),gitops-tekton-dev"
-    # - name: tag-dev
-    #   taskRef:
-    #     name: openshift-client
-    #     kind: ClusterTask
-    #   runAfter:
-    #     - s2i-build
-    #   params:
-    #     - name: ARGS
-    #       value: ["tag", "$(params.app-name):latest", "$(params.app-name):dev"]
     - name: rollout-dev
       taskRef:
         name: rollout-restart
@@ -120,15 +116,6 @@ spec:
           value: "$(params.app-name)"
         - name: NAMESPACE
           value: "petclinic-dev"
-    # - name: tag-prod
-    #   taskRef:
-    #     name: openshift-client
-    #     kind: ClusterTask
-    #   runAfter:
-    #     - rollout-dev
-    #   params:
-    #     - name: ARGS
-    #       value: ["tag", "$(params.app-name):dev", "$(params.app-name):prod"]
     - name: tag-test
       taskRef:
         name: tag-and-push-image
@@ -153,3 +140,82 @@ spec:
           value: "$(params.app-name)"
         - name: NAMESPACE
           value: "petclinic-test"
+    - name: clone-gitops-repo
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      runAfter:
+        - rollout-test
+      workspaces:
+        - name: output
+          workspace: gitops-source
+      params:
+        - name: url
+          value: "$(params.gitops_url)"
+        - name: revision
+          value: "$(params.gitops_revision)"
+        - name: deleteExisting
+          value: "true"
+    - name: branch
+      taskRef:
+        name: git
+      runAfter:
+        - clone-gitops-repo
+      workspaces:
+        - name: source
+          workspace: gitops-source
+      params:
+        - name: commands
+          value: |
+            git checkout -b push-$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+    - name: patch-prod
+      taskRef:
+        name: kustomize
+      params:
+        - name: old-image
+          value: petclinic
+        - name: new-image
+          value: quay.io/pittar/spring-petcinic
+        - name: new-tag
+          value: $(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+        - name: overlaypath
+          value: gitops/02-developers/overlays/prod/01-namespaces/petclinic-prod
+      runAfter:
+        - clone-gitops-repo
+      workspaces:
+        - name: source
+          workspace: gitops-source
+    - name: commit
+      taskRef:
+        name: git
+      runAfter:
+        - patch-prod
+      workspaces:
+        - name: source
+          workspace: gitops-source
+      params:
+        - name: commands
+          value: |
+            tag="$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)"
+            git status
+            cat ~/.gitconfig
+            git config --global user.email "pipeline@redhat.com"
+            git add -u
+            git commit -m 'Pushing image $(params.image_dest_url):$tag to production'
+            git push origin push-$tag
+    - name: prod-pr-deploy
+      taskRef:
+        name: task-create-pr
+        kind: Task
+      runAfter:
+        - commit
+      workspaces:
+        - name: source
+          workspace: gitops-source
+      params:
+        - name: title
+          value: Update image to $(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+        - name: body
+          value: |-
+            Please review the following links before accepting the PR:
+            Image Vulnerabilities: https://$(params.image_dest_url):$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)

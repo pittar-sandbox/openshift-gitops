@@ -15,10 +15,17 @@ spec:
       value: "gitops-tekton"
     - name: "app-name"
       value: "petclinic"
+    - name: "gitops-url"
+      value: "https://github.com/pittar-sandbox/openshift-gitops.git"
+    - name: "gitops-revision"
+      value: "main"
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
         claimName: workspace
+    - name: gitops-source
+      persistentVolumeClaim:
+        claimName: gitops-source
     - name: maven-settings-cm
       configMap:
         name: maven-settings-cm

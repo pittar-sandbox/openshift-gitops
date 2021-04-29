@@ -7,4 +7,5 @@ resources:
   - tag-and-push-image-task.yaml
   - generate-id-task.yaml
   - mvn-export-gav-task.yaml
+  - kustomize-task.yaml
 
