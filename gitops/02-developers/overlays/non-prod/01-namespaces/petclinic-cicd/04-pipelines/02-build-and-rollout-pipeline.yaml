@@ -99,8 +99,7 @@ spec:
         - name: dest-image
           value: "quay.io/pittar/petclinic"
         - name: dest-tags
-          value: $(tasks.mvn-gav.results.project-version),$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),gitops-tekton-dev
-          #value: "$(tasks.mvn-gav.results.project-version),$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),gitops-tekton-dev"
+          value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),gitops-tekton-dev"
     # - name: tag-dev
     #   taskRef:
     #     name: openshift-client
