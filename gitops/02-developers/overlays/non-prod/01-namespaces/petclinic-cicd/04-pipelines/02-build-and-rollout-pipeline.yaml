@@ -61,7 +61,8 @@ spec:
         name: maven
         kind: Task
       runAfter:
-        - generate-id 
+        - generate-id
+        - mvn-project-version
       params:
         - name: GOALS
           value: ["clean", "deploy", "sonar:sonar"]
