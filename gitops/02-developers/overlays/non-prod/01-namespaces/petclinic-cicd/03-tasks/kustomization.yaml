@@ -6,4 +6,5 @@ resources:
   - create-pr-task.yaml
   - tag-and-push-image-task.yaml
   - generate-id-task.yaml
+  - project-version-id-task.yaml
 
