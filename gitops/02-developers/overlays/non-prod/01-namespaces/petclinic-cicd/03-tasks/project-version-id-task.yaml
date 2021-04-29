@@ -111,6 +111,10 @@ spec:
     - script: >
         #!/usr/bin/env bash
 
+        export MVN_PROJECT_GROUPID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.groupId -q -DforceStdout)
+        export MVN_PROJECT_ARTIFACTID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+        export MVN_PROJECT_VERSION=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+
         /usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml help:evaluate -Dexpression=project.version -q -DforceStdout
       image: $(params.MAVEN_IMAGE)
       name: mvn-help-evaluate
