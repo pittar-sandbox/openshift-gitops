@@ -7,19 +7,19 @@ In non-prod cluster:
 1. Create non-prod envs.
 
 ```
-oc apply -k gitops/01-cluster-admin/argocd/01-namespaces
+oc apply -k gitops/01-cluster-admin/argocd/non-prod/01-namespaces
 ```
 
 2. Create the "apps" Argo CD instance.
 
 ```
-oc apply -k gitops/01-cluster-admin/02-operators/argocd
+oc apply -k gitops/01-cluster-admin/argocd/non-prod/02-operators
 ```
 
 1. Create prod envs.
 
 ```
-oc apply -k gitops/01-cluster-admin/argocd/01-namespaces
+oc apply -k gitops/01-cluster-admin/argocd/prod/01-namespaces
 ```
 
 

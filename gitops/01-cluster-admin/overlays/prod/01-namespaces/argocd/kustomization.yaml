@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: argocd
 
 bases:
-  - ../../../base/01-namespaces/03-argocd-applications
+  - ../../../../base/01-namespaces/argocd
