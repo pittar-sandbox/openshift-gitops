@@ -1,6 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
+  app: petclinic
   name: petclinic-cicd
 spec:
   destination:
@@ -8,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: petclinic
   source:
-    path: gitops/overlays/04-petclinic/01-cicd
+    path: gitops/02-developers/overlays/non-prod/01-namespaces/petclinic-cicd
     repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:

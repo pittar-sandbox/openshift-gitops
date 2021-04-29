@@ -1,6 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
+  app: petclinic
   name: petclinic-dev
 spec:
   destination:

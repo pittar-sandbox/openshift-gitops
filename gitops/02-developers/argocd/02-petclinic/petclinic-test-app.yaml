@@ -1,14 +1,15 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: petclinic-prod
+  app: petclinic
+  name: petclinic-test
 spec:
   destination:
-    namespace: petclinic-prod
+    namespace: petclinic-test
     server: https://kubernetes.default.svc
   project: petclinic
   source:
-    path: gitops/overlays/04-petclinic/03-prod
+    path: gitops/02-developers/overlays/non-prod/01-namespaces/petclinic-test
     repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
