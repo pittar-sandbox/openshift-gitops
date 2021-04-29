@@ -18,7 +18,7 @@ spec:
       description: revision to be used from repo of the code for deployment
       default: "master"
   tasks:
-    - name: fetch-repository
+    - name: clone-repository
       taskRef:
         name: git-clone
         kind: ClusterTask
@@ -34,12 +34,20 @@ spec:
           value: "true"
         - name: revision
           value: $(params.git-revision)
+    - name: generate-id
+      taskRef:
+        name: generate-id
+      runAfter:
+        - clone-repository
+      workspaces:
+        - name: source
+          workspace: shared-workspace
     - name: mvn-build
       taskRef:
         name: maven
         kind: Task
       runAfter:
-        - fetch-repository 
+        - generate-id 
       params:
         - name: GOALS
           value: ["clean", "deploy", "sonar:sonar"]
@@ -76,7 +84,7 @@ spec:
         - name: dest-image
           value: "quay.io/pittar/petclinic"
         - name: dest-tags
-          value: "gitops-tekton-dev"
+          value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),gitops-tekton-dev"
     # - name: tag-dev
     #   taskRef:
     #     name: openshift-client
