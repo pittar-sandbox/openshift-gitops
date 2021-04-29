@@ -10,4 +10,3 @@ bases:
 resources:
   - namespace.yaml
   - petclinic-serviceaccount.yaml
-  - quay-creds-secret-sealedsecret.json
