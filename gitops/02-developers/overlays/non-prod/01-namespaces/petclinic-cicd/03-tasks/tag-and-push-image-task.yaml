@@ -22,7 +22,7 @@ spec:
         then
           #tags=$(params.dest-tags)
           #for i in ${tags//,/ }
-          for i in $(params.dest-tags)
+          for i in "${$(params.dest-tags)[@]}"
           do
             echo "Copying image docker://$(params.src-image) to docker://$(params.dest-image):$i"
             skopeo copy --src-tls-verify=false --dest-tls-verify=false docker://$(params.src-image) docker://$(params.dest-image):$i
