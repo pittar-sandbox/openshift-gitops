@@ -18,7 +18,7 @@ spec:
       script: |
         #!/usr/bin/env bash
 
-        if [ -z "$(params.dest-tags)" ];
+        if [ "$(params.dest-tags)" != "" ];
         then
           tags=$(params.dest-tags)
           for i in ${tags//,/ }
