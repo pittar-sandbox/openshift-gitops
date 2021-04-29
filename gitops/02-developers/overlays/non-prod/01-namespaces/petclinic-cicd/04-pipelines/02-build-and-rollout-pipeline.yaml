@@ -42,6 +42,20 @@ spec:
       workspaces:
         - name: source
           workspace: shared-workspace
+    - name: mvn-project-version
+      taskRef:
+        name: maven-project-version
+        kind: Task
+      runAfter:
+        - clone-repository 
+      params:
+        - name: MAVEN_REPO_CONFIG_SECRET
+          value: nexus-secret
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: maven-settings
+          workspace: maven-settings-cm
     - name: mvn-build
       taskRef:
         name: maven

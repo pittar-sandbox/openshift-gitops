@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: maven
+  name: maven-project-version
 spec:
   description: This Task can be used to run a Maven build.  Based on the maven ClusterTask.
   params:
@@ -10,11 +10,6 @@ spec:
       description: Maven base image
       name: MAVEN_IMAGE
       type: string
-    - default:
-        - package
-      description: maven goals to run
-      name: GOALS
-      type: array
     - default: ''
       description: The Maven repository mirror url
       name: MAVEN_MIRROR_URL
