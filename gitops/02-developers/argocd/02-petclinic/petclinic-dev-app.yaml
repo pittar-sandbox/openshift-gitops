@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: petclinic
   source:
-    path: gitops/overlays/04-petclinic/02-dev
+    path: gitops/02-developers/overlays/non-prod/01-namespaces/petclinic-dev
     repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
