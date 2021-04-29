@@ -177,7 +177,7 @@ spec:
         - name: old-image
           value: petclinic
         - name: new-image
-          value: "quay.io/pittar/spring-petcinic"
+          value: "quay.io/pittar/petcinic"
         - name: new-tag
           value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)"
         - name: overlaypath
@@ -203,7 +203,7 @@ spec:
             cat ~/.gitconfig
             git config --global user.email "pipeline@redhat.com"
             git add -u
-            git commit -m 'Pushing image quay.io/pittar/spring-petclinic:$tag to production'
+            git commit -m 'Pushing image quay.io/pittar/petclinic:$tag to production'
             git push origin push-$tag
     - name: prod-pr-deploy
       taskRef:
