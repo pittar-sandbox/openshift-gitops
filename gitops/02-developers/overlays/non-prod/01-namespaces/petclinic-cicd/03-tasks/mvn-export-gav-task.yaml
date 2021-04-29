@@ -122,14 +122,14 @@ spec:
         export PROJECT_ARTIFACTID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)
         export PROJECT_VERSION=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
 
-        echo "GroupId    : $PROJECT_GROUPID"
-        echo "ArtifactId : $PROJECT_ARTIFACTID"
-        echo "Version    : $PROJECT_VERSION"
-
         echo -n "$PROJECT_GROUPID" > $(results.project-groupid.path)
-        echo -n "$PROJECT_ARTIFACTID" > $(results.project-artifactid.path)
-        echo -n "$PROJECT_VERSION" > $(results.project-version.path)
+        echo "GroupId    : $PROJECT_GROUPID"
 
+        echo -n "$PROJECT_ARTIFACTID" > $(results.project-artifactid.path)
+        echo "ArtifactId : $PROJECT_ARTIFACTID"
+
+        echo -n "$PROJECT_VERSION" > $(results.project-version.path)
+        echo "Version    : $PROJECT_VERSION"
       image: $(params.MAVEN_IMAGE)
       name: mvn-help-evaluate
       resources: {}
