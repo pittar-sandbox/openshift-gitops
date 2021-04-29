@@ -9,7 +9,7 @@ spec:
     - name: maven-settings-cm
   params:
     - name: app-name
-ç
+      type: string
       description: name of the deployment to be patched
     - name: git-url
       type: string
