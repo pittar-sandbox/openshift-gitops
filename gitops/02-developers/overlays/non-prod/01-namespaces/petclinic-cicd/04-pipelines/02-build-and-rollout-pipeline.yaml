@@ -203,7 +203,7 @@ spec:
             cat ~/.gitconfig
             git config --global user.email "pipeline@redhat.com"
             git add -u
-            git commit -m 'Pushing image $(params.image_dest_url):$tag to production'
+            git commit -m 'Pushing image quay.io/pittar/spring-petclinic:$tag to production'
             git push origin push-$tag
     - name: prod-pr-deploy
       taskRef:
@@ -219,5 +219,4 @@ spec:
           value: Update image to $(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
         - name: body
           value: |-
-            Please review the following links before accepting the PR:
-            Image Vulnerabilities: https://$(params.image_dest_url):$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+            Please review the following and accept this PR to rollout to PROD.
