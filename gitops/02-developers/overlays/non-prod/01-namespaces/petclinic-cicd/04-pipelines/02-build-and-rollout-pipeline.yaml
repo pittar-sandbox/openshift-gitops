@@ -177,7 +177,7 @@ spec:
         - name: old-image
           value: petclinic
         - name: new-image
-          value: "quay.io/pittar/petcinic"
+          value: "quay.io/pittar/petclinic"
         - name: new-tag
           value: "$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)"
         - name: overlaypath
