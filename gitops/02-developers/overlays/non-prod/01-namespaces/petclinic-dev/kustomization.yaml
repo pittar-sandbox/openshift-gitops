@@ -9,4 +9,4 @@ bases:
 images:
   - name: petclinic
     newName: quay.io/pittar/petclinic
-    newTag: gitops-tekton
+    newTag: gitops-tekton-dev
