@@ -3,10 +3,10 @@ kind: Kustomization
 
 namespace: petclinic-prod
 
-bases:
-  - ../../../../base/01-apps/petclinic
 
 images:
-  - name: petclinic
-    newName: quay.io/pittar/petclinic
-    newTag: gitops-tekton
+- name: petclinic
+  newName: quay.io/pittar/spring-petcinic
+  newTag: 383da5b-1034944372
+resources:
+- ../../../../base/01-apps/petclinic
