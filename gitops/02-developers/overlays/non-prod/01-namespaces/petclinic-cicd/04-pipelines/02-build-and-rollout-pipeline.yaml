@@ -42,9 +42,9 @@ spec:
       workspaces:
         - name: source
           workspace: shared-workspace
-    - name: mvn-project-version
+    - name: mvn-gav
       taskRef:
-        name: maven-project-version
+        name: mvn-export-gav
         kind: Task
       runAfter:
         - clone-repository 
@@ -62,7 +62,7 @@ spec:
         kind: Task
       runAfter:
         - generate-id
-        - mvn-project-version
+        - mvn-gav
       params:
         - name: GOALS
           value: ["clean", "deploy", "sonar:sonar"]

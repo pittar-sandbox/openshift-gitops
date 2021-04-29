@@ -1,9 +1,9 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: maven-project-version
+  name: mvn-export-gav
 spec:
-  description: This Task can be used to run a Maven build.  Based on the maven ClusterTask.
+  description: This Task exports the projects groupId, aftifactId, and version (GAV) as results.
   params:
     - default: gcr.io/cloud-builders/mvn@sha256:57523fc43394d6d9d2414ee8d1c85ed7a13460cbb268c3cd16d28cfb3859e641
       # Can't use registry.access.redhat.com/ubi8/openjdk-11 due to https://issues.redhat.com/browse/SRVKP-1428
@@ -42,6 +42,13 @@ spec:
       description: Protocol for the proxy ie http or https
       name: PROXY_PROTOCOL
       type: string
+  results:
+    - name: project-groupid
+      description: Maven project Group ID.
+    - name: project-artifactid
+      description: Maven project Artifact ID.
+    - name: project-version
+      description: Maven project version.
   stepTemplate:
     envFrom:
       - secretRef:
@@ -111,11 +118,14 @@ spec:
     - script: >
         #!/usr/bin/env bash
 
-        export MVN_PROJECT_GROUPID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.groupId -q -DforceStdout)
-        export MVN_PROJECT_ARTIFACTID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)
-        export MVN_PROJECT_VERSION=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+        export PROJECT_GROUPID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.groupId -q -DforceStdout)
+        export PROJECT_ARTIFACTID=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+        export PROJECT_VERSION=$(/usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
 
-        /usr/bin/mvn -s $(workspaces.maven-settings.path)/settings.xml help:evaluate -Dexpression=project.version -q -DforceStdout
+        echo -n "$PROJECT_GROUPID" > $(results.project-groupid.path)
+        echo -n "$PROJECT_ARTIFACTID" > $(results.project-artifactid.path)
+        echo -n "$PROJECT_VERSION" > $(results.project-version.path)
+
       image: $(params.MAVEN_IMAGE)
       name: mvn-help-evaluate
       resources: {}
