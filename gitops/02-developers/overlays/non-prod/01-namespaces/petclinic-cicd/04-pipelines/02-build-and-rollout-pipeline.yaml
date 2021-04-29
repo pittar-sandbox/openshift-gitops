@@ -9,7 +9,7 @@ spec:
     - name: maven-settings-cm
   params:
     - name: app-name
-      type: string
+ç
       description: name of the deployment to be patched
     - name: git-url
       type: string
@@ -18,10 +18,12 @@ spec:
       type: string
       description: revision to be used from repo of the code for deployment
       default: "master"
-    - name: "gitops-url"
-      value: "https://github.com/pittar-sandbox/openshift-gitops.git"
-    - name: "gitops-revision"
-      value: "main"
+    - name: gitops-url
+      type: string
+      default: "https://github.com/pittar-sandbox/openshift-gitops.git"
+    - name: gitops-revision
+      type: string
+      default: "main"
   tasks:
     - name: clone-repository
       taskRef:
