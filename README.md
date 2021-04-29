@@ -1,5 +1,10 @@
 # GitOps and Serverless CI/CD with OpenShift
 
+This is **not** a generic demo.  It requires quay and github credentials (as sealed secrets) to work.
+
+If you want to try this demo on your own clusters, you should fork this repositiroy, find/replace any instances of `pittar` and make sure you add your own quay and GitHub credentials as sealed secretes to you repos :)
+
+
 # Steps.
 
 In non-prod cluster:
