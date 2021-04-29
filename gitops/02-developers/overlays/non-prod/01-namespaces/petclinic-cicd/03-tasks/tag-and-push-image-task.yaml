@@ -19,7 +19,7 @@ spec:
 
         if [ "$(params.dest-tags)" != "" ];
         then
-          #ags=$(params.dest-tags)
+          tags=$(params.dest-tags)
           #for i in ${tags//,/ }
           for i in ${tags}
           do
