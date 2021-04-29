@@ -12,8 +12,10 @@ spec:
   nodeSelector: {}
   output:
     to:
-      kind: ImageStreamTag
-      name: petclinic:latest
+      kind: DockerImage
+      name: quay.io/pittar/petclinic:gitops-tekton
+    pushSecret:
+      name: quay-creds-secret
   postCommit: {}
   resources: {}
   runPolicy: Serial

@@ -26,7 +26,10 @@ spec:
         deploymentconfig: petclinic
     spec:
       containers:
-      - env:
+      - name: petclinic
+        image: petclinic:latest
+        imagePullPolicy: Always
+        env:
         - name: spring_profiles_active
           value: mysql
         - name: MYSQL_SERVER
@@ -41,9 +44,6 @@ spec:
             secretKeyRef:
               key: database-password
               name: petclinicdb
-        image: petclinic:latest
-        imagePullPolicy: Always
-        name: petclinic
         resources:
           limits:
             memory: 512Mi
