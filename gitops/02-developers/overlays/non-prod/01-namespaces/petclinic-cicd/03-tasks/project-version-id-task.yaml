@@ -52,10 +52,16 @@ spec:
       resources: {}
       script: >
         #!/usr/bin/env bash
+
+
         [[ -f $(workspaces.maven-settings.path)/settings.xml ]] && \
+
         echo 'using existing $(workspaces.maven-settings.path)/settings.xml' &&
         exit 0
+
+
         cat > $(workspaces.maven-settings.path)/settings.xml <<EOF
+
         <settings>
           <mirrors>
             <!-- The mirrors added here are generated from environment variables. Don't change. -->
@@ -66,8 +72,12 @@ spec:
             <!-- ### HTTP proxy from ENV ### -->
           </proxies>
         </settings>
+
         EOF
+
+
         xml=""
+
         if [ -n "$(params.PROXY_HOST)" -a -n "$(params.PROXY_PORT)" ]; then
           xml="<proxy>\
             <id>genproxy</id>\
@@ -88,6 +98,8 @@ spec:
               </proxy>"
           sed -i "s|<!-- ### HTTP proxy from ENV ### -->|$xml|" $(workspaces.maven-settings.path)/settings.xml
         fi
+
+
         if [ -n "$(params.MAVEN_MIRROR_URL)" ]; then
           xml="    <mirror>\
             <id>mirror.default</id>\
