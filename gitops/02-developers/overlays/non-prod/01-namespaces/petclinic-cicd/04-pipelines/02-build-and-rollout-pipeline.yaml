@@ -183,7 +183,7 @@ spec:
         - name: overlaypath
           value: "gitops/02-developers/overlays/prod/01-namespaces/petclinic-prod"
       runAfter:
-        - clone-gitops-repo
+        - branch
       workspaces:
         - name: source
           workspace: gitops-source
