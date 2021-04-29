@@ -153,9 +153,9 @@ spec:
           workspace: gitops-source
       params:
         - name: url
-          value: "$(params.gitops_url)"
+          value: "$(params.gitops-url)"
         - name: revision
-          value: "$(params.gitops_revision)"
+          value: "$(params.gitops-revision)"
         - name: deleteExisting
           value: "true"
     - name: branch
