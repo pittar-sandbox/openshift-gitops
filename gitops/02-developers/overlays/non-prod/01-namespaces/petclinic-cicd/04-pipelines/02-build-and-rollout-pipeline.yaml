@@ -217,6 +217,12 @@ spec:
       params:
         - name: title
           value: Update image to $(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+        - name: github-secret
+          value: github-creds-secret
         - name: body
           value: |-
             Please review the following and accept this PR to rollout to PROD.
+
+            Review any security issues with this image here: https://quay.io/pittar/petcinic:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+
+            View SonarQube reports here: http://sonarqube-cicd-tools.apps.cluster-fe78.fe78.sandbox116.opentlc.com/dashboard?id=org.springframework.samples%3Aspring-petclinic
