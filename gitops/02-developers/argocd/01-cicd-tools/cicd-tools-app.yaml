@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cicd-tools
   source:
-    path: gitops/02-developers/overlays/non-prod/01-cicd-tools
+    path: gitops/02-developers/overlays/non-prod/01-namespaces/cicd-tools
     repoURL: https://github.com/pittar-sandbox/openshift-gitops.git
     targetRevision: main
   syncPolicy:
