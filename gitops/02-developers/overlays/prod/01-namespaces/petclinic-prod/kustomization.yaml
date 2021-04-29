@@ -7,6 +7,6 @@ namespace: petclinic-prod
 images:
 - name: petclinic
   newName: quay.io/pittar/petcinic
-  newTag: gitops-tekton
+  newTag: 383da5b-2957999383
 resources:
 - ../../../../base/01-apps/petclinic
