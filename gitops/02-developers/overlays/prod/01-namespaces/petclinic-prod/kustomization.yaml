@@ -7,6 +7,6 @@ namespace: petclinic-prod
 images:
 - name: petclinic
   newName: quay.io/pittar/petclinic
-  newTag: c8cd1d3-1991847104
+  newTag: 51373c1-2106959128
 resources:
 - ../../../../base/01-apps/petclinic
